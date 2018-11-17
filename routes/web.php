@@ -29,7 +29,8 @@ Route::group(['middleware' => 'auth'],function (){
     //路由组 只有通过邮箱验证后的用户才能访问
     Route::group(['middleware' => 'email_verified'], function() {
 
-
+        //用户收货地址列表页面
+        Route::get('/user_addresses','UserAddressesController@index')->name('user_addresses.index');
     });
 
 

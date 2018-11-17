@@ -23,4 +23,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //模型关联 由用户得到它的所有收货地址
+    public function addresses(){
+        return $this->hasMany(UserAddress::class);
+    }
 }
