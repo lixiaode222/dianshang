@@ -13,3 +13,6 @@
 
 //首页
 Route::get('/','PagesController@root')->name('root');
+//登陆注册的相关路由
+Auth::routes();
+
