@@ -31,6 +31,10 @@ Route::group(['middleware' => 'auth'],function (){
 
         //用户收货地址列表页面
         Route::get('/user_addresses','UserAddressesController@index')->name('user_addresses.index');
+        //用户添加收货地址页面
+        Route::get('/user_addresses/create','UserAddressesController@create')->name('user_addresses.create');
+        //用户添加收货地址逻辑
+        Route::post('user_addresses','UserAddressesController@store')->name('user_addresses.store');
     });
 
 
