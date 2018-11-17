@@ -1,28 +1,25 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    //使用通知类
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    //可直接写入和修改的字段
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','email_verified'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    //表明'email_verified'字段是布尔型
+    protected $casts = [
+        'email_verified' => 'boolean',
+    ];
+
     protected $hidden = [
         'password', 'remember_token',
     ];
