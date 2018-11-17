@@ -38,4 +38,41 @@ class UserAddressesController extends Controller
         return redirect()->route('user_addresses.index');
     }
 
+    //用户修改收货地址页面
+    public function edit(UserAddress $user_address){
+
+        $this->authorize('own', $user_address);
+
+        return view('user_addresses.create_and_edit',['address' => $user_address]);
+    }
+
+    //用户修改收货地址逻辑
+    public function update(UserAddress $user_address,UserAddressRequest $request){
+
+        $this->authorize('own', $user_address);
+
+        $user_address->update($request->only([
+            'province',
+            'city',
+            'district',
+            'address',
+            'zip',
+            'contact_name',
+            'contact_phone',
+        ]));
+
+        return redirect()->route('user_addresses.index');
+    }
+
+    //用户删除收货地址逻辑
+    public function destroy(UserAddress $user_address){
+
+          $this->authorize('own', $user_address);
+
+          $user_address->delete();
+
+          //因为改成了AJAX请求，不用redirect
+          return [];
+    }
+
 }
