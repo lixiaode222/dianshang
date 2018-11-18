@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->float('rating')->default(5)->comment('商品平均评分');
             $table->unsignedInteger('sold_count')->default(0)->comment('商品销量');
             $table->unsignedInteger('review_count')->default(0)->comment('商品评价数量');
-            $table->decimal('decimal',10,2)->comment('商品sku的最低价格');
+            $table->decimal('price',10,2)->comment('商品sku的最低价格');
             $table->timestamps();
         });
     }

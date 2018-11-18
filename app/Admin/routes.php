@@ -16,5 +16,13 @@ Route::group([
     $router->get('/users','UsersController@index');
     //后台商品列表页面
     $router->get('/products','ProductsController@index');
+    //后台商品添加页面
+    $router->get('/products/create','ProductsController@create');
+    //后台商品添加逻辑
+    $router->post('/products','ProductsController@store');
+    //后台修改商品页面
+    $router->get('products/{id}/edit', 'ProductsController@edit');
+    //后台修改商品逻辑
+    $router->put('products/{id}', 'ProductsController@update');
 
 });
