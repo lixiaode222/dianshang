@@ -12,7 +12,10 @@ class User extends Authenticatable
 
     //可直接写入和修改的字段
     protected $fillable = [
-        'name', 'email', 'password','email_verified'
+        'name',
+        'email',
+        'password',
+        'email_verified',
     ];
 
     //表明'email_verified'字段是布尔型
