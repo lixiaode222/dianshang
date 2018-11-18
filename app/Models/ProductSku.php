@@ -16,7 +16,7 @@ class ProductSku extends Model
 
     //模型关联 由商品sku得到它对应的商品
     public function product(){
-        
+
         return $this->belongsTo(Product::class);
     }
 }
