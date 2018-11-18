@@ -45,6 +45,10 @@ Route::group(['middleware' => 'auth'],function (){
         Route::put('/user_addresses/{user_address}','UserAddressesController@update')->name('user_addresses.update');
         //用户删除收货地址逻辑
         Route::delete('/user_addresses/{user_address}','UserAddressesController@destroy')->name('usre_addresses.destroy');
+        //用户收藏商品逻辑
+        Route::post('/products/{product}/favorite','ProductsController@favor')->name('products.favor');
+        //用户取消收藏商品逻辑
+        Route::delete('/products/{product}/favorite','ProductsController@disfavor')->name('products.disfavor');
     });
 
 
