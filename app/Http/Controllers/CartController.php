@@ -13,8 +13,9 @@ class CartController extends Controller
     public function index(Request $request){
 
         $cartItems = $request->user()->cartItems()->with(['productSku.product'])->get();
+        $addresses = $request->user()->addresses()->orderBy('last_used_at','desc')->get();
 
-        return view('cart.index',compact('cartItems'));
+        return view('cart.index',compact('cartItems','addresses'));
     }
 
     //把商品添加到购物车逻辑
