@@ -15,6 +15,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
         'email_verified',
     ];
 
@@ -39,5 +40,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Product::class,'user_favorite_products')
                     ->withTimestamps()
                     ->orderBy('user_favorite_products.created_at','desc');
+    }
+
+    //模型关联 由用户得到它的所有购物车项
+    public function cartItems(){
+
+        return $this->hasMany(CartItem::class);
     }
 }

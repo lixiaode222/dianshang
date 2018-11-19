@@ -29,6 +29,10 @@ Route::group(['middleware' => 'auth'],function (){
     //路由组 只有通过邮箱验证后的用户才能访问
     Route::group(['middleware' => 'email_verified'], function() {
 
+        //用户编辑个人资料页面
+        Route::get('/users/{user}/edit','UsersController@edit')->name('users.edit');
+        //用户编辑个人资料逻辑
+        Route::put('/users/{user}','UsersController@update')->name('users.update');
         //用户收货地址列表页面
         Route::get('/user_addresses','UserAddressesController@index')->name('user_addresses.index');
         //用户添加收货地址页面
@@ -47,6 +51,8 @@ Route::group(['middleware' => 'auth'],function (){
         Route::delete('/products/{product}/favorite','ProductsController@disfavor')->name('products.disfavor');
         //用户收藏商品列表页面
         Route::get('/products/favorites','ProductsController@favorites')->name('products.favorites');
+        //用户将商品加入购物车逻辑
+        Route::post('cart','CartController@add')->name('cart.add');
     });
 
 });
