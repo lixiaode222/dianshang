@@ -8,6 +8,7 @@ use App\Models\ProductSku;
 use App\Models\UserAddress;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Jobs\CloseOrder;
 
 class OrdersController extends Controller
 {
@@ -76,6 +77,10 @@ class OrdersController extends Controller
 
             return $order;
         });
+
+        //触发延时任务，如果用户超过时间不支付订单，订单自动关闭
+        //app.order_ttl 是我们自己定义在config/app.php 中的  关闭时间
+        $this->dispatch(new CloseOrder($order, config('app.order_ttl')));
 
         return $order;
     }

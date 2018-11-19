@@ -106,6 +106,10 @@ return [
 
     'redis' => [
 
+        'options' => [
+            'prefix' => 'dianshang:'
+        ],
+
         'client' => 'predis',
 
         'default' => [
