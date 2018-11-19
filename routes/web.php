@@ -59,6 +59,8 @@ Route::group(['middleware' => 'auth'],function (){
         Route::delete('cart/{sku}','CartController@remove')->name('cart.remove');
         //用户下单逻辑
         Route::post('orders','OrdersController@store')->name('orders.store');
+        //用户的订单页面
+        Route::get('orders','OrdersController@index')->name('orders.index');
     });
 
 });

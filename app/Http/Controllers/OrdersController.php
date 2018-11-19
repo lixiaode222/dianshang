@@ -84,4 +84,19 @@ class OrdersController extends Controller
 
         return $order;
     }
+
+
+    //用户订单页面
+    public function index(Request $request){
+
+        $user = $request->user();
+        $orders = Order::query()
+                //使用with方法加载,避免N+1问题
+                ->with(['items.product','items.productSku'])
+                ->where('user_id',$user->id)
+                ->orderBy('created_at','desc')
+                ->paginate();
+
+        return view('orders.index',compact('orders'));
+    }
 }
