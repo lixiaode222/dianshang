@@ -46,4 +46,22 @@ class OrdersController extends Controller
 
         return view('orders.show', ['order' => $order->load(['items.productSku', 'items.product'])]);
     }
+
+    //用户确认收货逻辑
+    public function received(Order $order,Request $request){
+
+        //校验权限
+        $this->authorize('own', $order);
+
+        //判断订单的发货状态是不是已经发货了
+        if ($order->ship_status !== Order::SHIP_STATUS_DELIVERED) {
+            throw new InvalidRequestException('发货状态不正确');
+        }
+
+        // 更新发货状态为已收到
+        $order->update(['ship_status' => Order::SHIP_STATUS_RECEIVED]);
+
+        // 返回订单信息
+        return $order;
+    }
 }
