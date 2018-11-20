@@ -78,6 +78,11 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    //模型关联 有订单得到该订单使用的优惠券
+    public function couponCode(){
+        return $this->hasOne(CouponCode::class);
+    }
+
 
     //在订单生成前 调用模型创建事件 给订单赋予订单号
     protected static function boot()

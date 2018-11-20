@@ -29,8 +29,10 @@ Route::group([
     //后台订单详情页面
     $router->get('/orders/{order}','OrdersController@show')->name('admin.orders.show');
     //后台发货逻辑
-    $router->post('orders/{order}/ship','OrdersController@ship')->name('admin.orders.ship');
+    $router->post('/orders/{order}/ship','OrdersController@ship')->name('admin.orders.ship');
     //后台处理退款逻辑
-    $router->post('orders/{order}/refund', 'OrdersController@handleRefund')->name('admin.orders.handle_refund');
+    $router->post('/orders/{order}/refund', 'OrdersController@handleRefund')->name('admin.orders.handle_refund');
+    //后台优惠券列表页面
+    $router->get('/coupon_codes','CouponCodesController@index');
 
 });
