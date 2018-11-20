@@ -21,8 +21,10 @@ Route::group([
     //后台商品添加逻辑
     $router->post('/products','ProductsController@store');
     //后台修改商品页面
-    $router->get('products/{id}/edit', 'ProductsController@edit');
+    $router->get('/products/{id}/edit', 'ProductsController@edit');
     //后台修改商品逻辑
-    $router->put('products/{id}', 'ProductsController@update');
+    $router->put('/products/{id}', 'ProductsController@update');
+    //后台订单列表页面
+    $router->get('/orders','OrdersController@index')->name('admin.orders.index');
 
 });
