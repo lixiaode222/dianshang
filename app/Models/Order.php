@@ -80,7 +80,7 @@ class Order extends Model
 
     //模型关联 有订单得到该订单使用的优惠券
     public function couponCode(){
-        return $this->hasOne(CouponCode::class);
+        return $this->belongsTo(CouponCode::class);
     }
 
 
