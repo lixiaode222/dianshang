@@ -10,13 +10,13 @@ use App\Models\CouponCode;
 class CouponCodesController extends Controller
 {
     //检查优惠券是否可用逻辑
-    public function show($code)
+    public function show($code, Request $request)
     {
         if (!$record = CouponCode::where('code', $code)->first()) {
             throw new CouponCodeUnavailableException('优惠券不存在');
         }
 
-        $record->checkAvailable();
+        $record->checkAvailable($request->user());
 
         return $record;
     }
